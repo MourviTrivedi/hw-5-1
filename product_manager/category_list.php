@@ -27,7 +27,7 @@
 	<label>Name:</label>
 	<input type="text" name="name"><br>
 
-	<label>&nbsp:</label><br>
+	<label>&nbsp;</label><br>
 	<input type="submit" value="add category"><br>
     </form>
 
