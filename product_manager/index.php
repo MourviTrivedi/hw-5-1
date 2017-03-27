@@ -51,16 +51,20 @@ if ($action == 'list_products') {
         add_product($category_id, $code, $name, $price);
         header("Location: .?category_id=$category_id");
     }
-}  
-else if ($action == 'list_categories') {
-$category_id = filter_input(INPUT_GET, 'category_id', 
-FILTER_VALIDATE_INT);
-if ($category_id == NULL || $category_id == FALSE) {
-$category_id = 1;
+} else if ($action == 'add_category') {
+    
+    $name = filter_input(INPUT_POST, 'name');
+    if ($name == NULL) {
+    $error = "INPUT data.";
+       include('../errors/error.php');  
+}  else {
+	add_category($name);
+	header("Location: .?action=list_categories");
 }
-$category_name = get_category_name($category_id);
-$categories = get_categories();
-$products = get_products_by_category($category_id);
-include('category_list.php');
-}
+
+}  else if ($action == 'delete_category') {
+	$category_id = filter_input(INPUT_POST, 'category_id');
+	delete_category($category_id);
+	header("Location: .?action=list_categories");
+}		
 ?>
